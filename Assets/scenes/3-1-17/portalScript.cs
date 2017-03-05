@@ -25,7 +25,7 @@ public class portalScript : MonoBehaviour {
 				if (hit.rigidbody != null) {
 					portalIn.transform.position = hit.point;
 					portalIn.SetActive (true);
-					print (hit.point);
+					//print (hit.point);
 				}
 			}
 		}
@@ -38,9 +38,11 @@ public class portalScript : MonoBehaviour {
 
 			if (Physics.Raycast (ray, out hit)) {
 				if (hit.rigidbody != null) {
+
 					portalOut.transform.position = hit.point;
+					portalOut.transform.rotation = hit.transform.rotation;
 					portalOut.SetActive (true);
-					print (hit.point);
+
 				}
 			}
 		}
@@ -48,7 +50,7 @@ public class portalScript : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col){
 		if (col.gameObject.name == "pIn" && portalOut.activeSelf) {
-			print (col.gameObject.name);
+
 			transform.position = portalOut.transform.position + portalOut.transform.forward;
 		} else if (col.gameObject.name == "pOut") {
 			
